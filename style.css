@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Make sure the video stays in the background */
+}
+
+.input {
+    height: 60px;
+    width: 40%;
+    color: white;
+    border: 2px solid;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+/* button {
+    height: 35px;
+    width: 10%;
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    
+} */
+
+#city-temp {
+    font-size: 100px;
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 15px;
+    text-shadow: 0px 3px rgba(0, 0, 0, 0.4);
+}
+
+#city-time {
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#city-name {
+    font-size: 40px;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 250px;
+    background-image: url('./forest-trees-northwestisbest-exploress.jpg');
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0px;
+}
+
+button {
+    --b: 3px;   /* border thickness */
+    --s: .15em; /* size of the corner */
+    --c: white;
+    
+    padding: calc(.05em + var(--s)) calc(.3em + var(--s));
+    color: var(--c);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .2em;
+  }
+  button:hover,
+  button:focus-visible{
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+  button:active {
+    background: var(--c);
+    color: #fff;
+  }
+  button {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    cursor: pointer;
+    border: none;
+    margin: .1em;
+  }
+

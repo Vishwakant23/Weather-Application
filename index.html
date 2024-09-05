@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <video autoplay loop muted plays-inline>
+        <source src="./WhatsApp Video 2024-09-03 at 10.17.28 PM.mp4" type="video/mp4">
+    </video>
+    
+    <div>
+        <h1>Weather App</h1>
+        <input class="input" type="text" id="city-input" placeholder="Enter City Name"/>
+        <button id="search-button">Search</button>
+
+        <div>
+            <h3 id="city-name">Canada, Ontario - Toronto </h3>
+            <p id="city-time">Location</p>
+            <p id="city-temp">13°C</p>
+        </div>
+    </div>
+
+    <script>
+        const button = document.getElementById("search-button");
+        const input = document.getElementById("city-input");
+        const cityName = document.getElementById('city-name');
+        const cityTime = document.getElementById('city-time');
+        const cityTemp = document.getElementById('city-temp');
+
+        async function getData(cityName) {
+            const response = await fetch(
+                `http://api.weatherapi.com/v1/current.json?key=930971becfa941f882053344220412&q=${cityName}&aqi=yes`
+            );
+            return await response.json();
+        }
+
+        button.addEventListener("click", async () => {
+            const value = input.value;
+            const result = await getData(value);
+            cityName.innerText = `${result.location.name}, ${result.location.region} - ${result.location.country}`;
+            cityTime.innerText = result.location.localtime;
+            cityTemp.innerText = `${result.current.temp_c}°C`;
+        });
+    </script>
+</body>
+</html>
