@@ -24,27 +24,43 @@
         </div>
     </div>
 
-    <script>
-        const button = document.getElementById("search-button");
-        const input = document.getElementById("city-input");
-        const cityName = document.getElementById('city-name');
-        const cityTime = document.getElementById('city-time');
-        const cityTemp = document.getElementById('city-temp');
+<script>
+    const button = document.getElementById("search-button");
+    const input = document.getElementById("city-input");
+    const cityName = document.getElementById('city-name');
+    const cityTime = document.getElementById('city-time');
+    const cityTemp = document.getElementById('city-temp');
 
-        async function getData(cityName) {
+    async function getData(cityName) {
+        try {
             const response = await fetch(
-                `http://api.weatherapi.com/v1/current.json?key=930971becfa941f882053344220412&q=${cityName}&aqi=yes`
+                `https://api.weatherapi.com/v1/current.json?key=930971becfa941f882053344220412&q=${cityName}&aqi=yes`
             );
+            if (!response.ok) {
+                throw new Error('City not found or invalid API key');
+            }
             return await response.json();
+        } catch (error) {
+            alert("Error: " + error.message);
+            return null;
         }
+    }
 
-        button.addEventListener("click", async () => {
-            const value = input.value;
-            const result = await getData(value);
+    button.addEventListener("click", async () => {
+        const value = input.value.trim();
+        if (!value) {
+            alert("Please enter a city name");
+            return;
+        }
+        
+        const result = await getData(value);
+        if (result) {
             cityName.innerText = `${result.location.name}, ${result.location.region} - ${result.location.country}`;
             cityTime.innerText = result.location.localtime;
             cityTemp.innerText = `${result.current.temp_c}°C`;
-        });
-    </script>
+        }
+    });
+</script>
+
 </body>
 </html>
